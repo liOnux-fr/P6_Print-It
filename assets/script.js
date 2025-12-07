@@ -29,7 +29,7 @@ left.addEventListener("click", () => {
 	console.log(i);
 });
 
-left.addEventListener("click", () => {
+right.addEventListener("click", () => {
 	i--;
 	console.log(i);
 });
