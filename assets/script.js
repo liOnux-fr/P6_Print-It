@@ -16,20 +16,41 @@ const slides = [
 		image: "slide4.png",
 		tagLine: "Autocollants <span>avec découpe laser sur mesure</span>",
 	},
-];
+]
 
-const left = document.querySelector("#banner .arrow_left");
-const right = document.querySelector("#banner .arrow_right");
-const slider = document.querySelector("#banner");
+// Compte le nombre d'images :
+const nbImages = slides.length
 
-let i = 0;
+// Image sélectionnée :
+let img_selected = slides[0].image
+
+// Récupère le parent des dots :
+const parentDot = document.querySelector("div .dots")
+
+// Ajoute les dots dynamiquement :
+for (let i = 0; i < nbImages; i++) {
+	const dotSpan = document.createElement("span")
+		if (slides[i].image === img_selected) {
+			dotSpan.classList.add("dot_selected")
+		} else {
+	 		dotSpan.classList.add("dot")
+		}
+	parentDot.appendChild(dotSpan)
+}
+
+// Récupère les flèches :
+const left = document.querySelector("#banner .arrow_left")
+const right = document.querySelector("#banner .arrow_right")
+// const slider = document.querySelector("#banner")
+
+let e = 0
 
 left.addEventListener("click", () => {
-	i++;
-	console.log(i);
-});
+	e++
+	console.log(e)
+})
 
 right.addEventListener("click", () => {
-	i--;
-	console.log(i);
-});
+	e--
+	console.log(e)
+})

@@ -144,19 +144,23 @@ header {
 	bottom: 40px;
 	display: flex;
 }
+.dot,
+.dot_selected {
+    margin-inline: 5px;
+    width: 13px;
+    height: 13px;
+    border: 3px solid #fff;
+    border-radius: 100%;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
 .dot {
-	margin-inline: 5px;
-	width: 13px;
-	height: 13px;
-	background-color: #ffffff00;
-	border: 3px solid #fff;
-	border-radius: 100%;
-	box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    background-color: #ffffff00; /* Transparent */
 }
 .dot_selected {
-	background-color: #fff;
+    background-color: #fff; /* Blanc */
 }
 /* Fin du code CSS pour le carousel */
+
 #banner p {
 	font-family: "Roboto Slab", sans-serif;
 	font-weight: 900;
