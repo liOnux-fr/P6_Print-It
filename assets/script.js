@@ -18,18 +18,18 @@ const slides = [
 	},
 ]
 
-// Compte le nombre d'images :
+// Initialisation des variables :
 const nbImages = slides.length
-
-// Image sélectionnée :
-let img_selected = slides[0].image
-
-// Récupère le parent des dots :
+const left = document.querySelector("#banner .arrow_left")
+const right = document.querySelector("#banner .arrow_right")
+const slider = document.querySelector("#banner") // en attente des autres étapes
 const parentDot = document.querySelector("div .dots")
+let img_selected = slides[0].image // en attente des autres étapes
+
 
 // Ajoute les dots dynamiquement :
 for (let i = 0; i < nbImages; i++) {
-	const dotSpan = document.createElement("span")
+	let dotSpan = document.createElement("span")
 		if (slides[i].image === img_selected) {
 			dotSpan.classList.add("dot_selected")
 		} else {
@@ -38,11 +38,7 @@ for (let i = 0; i < nbImages; i++) {
 	parentDot.appendChild(dotSpan)
 }
 
-// Récupère les flèches :
-const left = document.querySelector("#banner .arrow_left")
-const right = document.querySelector("#banner .arrow_right")
-// const slider = document.querySelector("#banner")
-
+// Évennements sur les flèches :
 let e = 0
 
 left.addEventListener("click", () => {
