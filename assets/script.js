@@ -1,3 +1,4 @@
+// Initialisation des constantes et des variables :
 const slides = [
 	{
 		image: "slide1.jpg",
@@ -17,36 +18,48 @@ const slides = [
 		tagLine: "Autocollants <span>avec découpe laser sur mesure</span>",
 	},
 ]
-
-// Initialisation des variables :
 const nbImages = slides.length
 const left = document.querySelector("#banner .arrow_left")
 const right = document.querySelector("#banner .arrow_right")
-const slider = document.querySelector("#banner") // en attente des autres étapes
+const pBanner = document.querySelector("#banner p")
+const imgBanner = document.querySelector(".banner-img")
 const parentDot = document.querySelector("div .dots")
-let img_selected = slides[0].image // en attente des autres étapes
+let i = 0 // index du tableau slides[]
+let img_selected = slides[i].image // Image sélectionnée du carrousel
 
-
-// Ajoute les dots dynamiquement :
-for (let i = 0; i < nbImages; i++) {
-	let dotSpan = document.createElement("span")
-		if (slides[i].image === img_selected) {
-			dotSpan.classList.add("dot_selected")
-		} else {
-	 		dotSpan.classList.add("dot")
-		}
-	parentDot.appendChild(dotSpan)
+// Fonction qui ajoute les dots :
+function dotsFunction() {
+	for (let i = 0; i < nbImages; i++) {
+		const dotSpan = document.createElement("span")
+			if (slides[i].image === img_selected) {
+				dotSpan.classList.add("dot_selected")
+			} else {
+				dotSpan.classList.add("dot")
+			}
+		parentDot.appendChild(dotSpan)
+	}
 }
 
+// Fonction qui gère tous les changements après click :
+function imgFunction(i) {
+	imgBanner.src = `./assets/images/slideshow/${slides[i].image}`
+	img_selected = slides[i].image
+	pBanner.innerHTML = slides[i].tagLine
+	const spans = parentDot.querySelectorAll("span")
+		spans.forEach(span => {
+			parentDot.removeChild(span)
+	})
+	dotsFunction()
+}
+
+dotsFunction()
+
 // Évennements sur les flèches :
-let e = 0
-
-left.addEventListener("click", () => {
-	e++
-	console.log(e)
-})
-
 right.addEventListener("click", () => {
-	e--
-	console.log(e)
+	i++
+	imgFunction(i)
+})
+left.addEventListener("click", () => {
+	i--
+	imgFunction(i)
 })
