@@ -28,6 +28,7 @@ let img_selected = slides[i].image // Image sélectionnée du carrousel
 
 // Fonction qui ajoute les dots :
 function dotsFunction() {
+	parentDot.innerHTML = '' // Vide le conteneur parent des dots
 	for (let i = 0; i < slides.length; i++) {
 		const dotSpan = document.createElement("span")
 			if (slides[i].image === img_selected) {
@@ -44,11 +45,7 @@ function clickFunction(i) {
 	imgBanner.src = `./assets/images/slideshow/${slides[i].image}` // Change l'image
 	img_selected = slides[i].image
 	pBanner.innerHTML = slides[i].tagLine // Change le paragraphe
-	const spans = parentDot.querySelectorAll("span")
-		spans.forEach(span => {
-			parentDot.removeChild(span) // Efface les dots
-	})
-	dotsFunction() // Remet les dots
+	dotsFunction() // Ajoute les dots
 }
 
 dotsFunction()
