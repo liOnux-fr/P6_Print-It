@@ -1,4 +1,4 @@
-// Initialisation des constantes et des variables :
+// Initialisation des constantes et variables :
 const slides = [
 	{
 		image: "slide1.jpg",
@@ -22,36 +22,28 @@ const left = document.querySelector("#banner .arrow_left") // flèche gauche
 const right = document.querySelector("#banner .arrow_right") // flèche droite
 const pBanner = document.querySelector("#banner p") // paragraphe du carrousel
 const imgBanner = document.querySelector(".banner-img") // image du carrousel
-const parentDot = document.querySelector("div .dots") // conteneur parent des dots
+const parentDot = document.querySelector("#banner div") // conteneur parent des dots
+const spans = [] // Tableau des dots
 let i = 0 // index du tableau slides[]
-let img_selected = slides[i].image // Image sélectionnée du carrousel
 
-// Fonction qui ajoute les dots :
-function dotsFunction() {
-	parentDot.innerHTML = '' // Vide le conteneur parent des dots
-	for (let i = 0; i < slides.length; i++) {
-		const dotSpan = document.createElement("span")
-			if (slides[i].image === img_selected) {
-				dotSpan.classList.add("dot_selected")
-			} else {
-				dotSpan.classList.add("dot")
-			}
-		parentDot.appendChild(dotSpan)
-	}
+// Création des dots normaux, puis celui sélectionné :
+for (let i = 0; i < slides.length; i++) {
+    spans.push(document.createElement("span"));
+    spans[i].classList.add("dot");
+    parentDot.appendChild(spans[i]);
 }
+spans[0].classList.add("dot_selected")
 
-// Fonction qui gère tous les changements après click :
+// Fonction qui gère les changements après click :
 function clickFunction(i) {
 	imgBanner.src = `./assets/images/slideshow/${slides[i].image}` // Change l'image
-	img_selected = slides[i].image
-	pBanner.innerHTML = slides[i].tagLine // Change le paragraphe
-	dotsFunction() // Ajoute les dots
+	pBanner.innerHTML = slides[i].tagLine // Change le contenu du paragraphe
+	spans[i].classList.add("dot_selected") // Sélectionne le dot prévu
 }
 
-dotsFunction()
-
-// Évennements après click sur les flèches :
+// Évènements après click sur les flèches :
 right.addEventListener("click", () => {
+	spans[i].classList.remove("dot_selected") // Dessélectionne le dot en cours
 	i++
 	if (i >= slides.length) {
 		i = 0 // Retour à la première image
@@ -59,6 +51,7 @@ right.addEventListener("click", () => {
 	clickFunction(i)
 })
 left.addEventListener("click", () => {
+	spans[i].classList.remove("dot_selected") // Dessélectionne le dot en cours
 	i--
 	if (i < 0) {
 		i = slides.length-1 // Retour à la dernière image
