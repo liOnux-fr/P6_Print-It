@@ -18,8 +18,7 @@ const slides = [
 		tagLine: "Autocollants <span>avec découpe laser sur mesure</span>",
 	},
 ]
-const left = document.querySelector("#banner .arrow_left") // flèche gauche
-const right = document.querySelector("#banner .arrow_right") // flèche droite
+const arrows = document.querySelectorAll("#banner .arrow") // flèches gauche et droite
 const pBanner = document.querySelector("#banner p") // paragraphe du carrousel
 const imgBanner = document.querySelector(".banner-img") // image du carrousel
 const parentDot = document.querySelector("#banner div") // conteneur parent des dots
@@ -35,9 +34,9 @@ for (let i = 0; i < slides.length; i++) {
 spans[0].classList.add("dot_selected")
 
 // Fonction qui gère les changements après click :
-function majBanner(e) {
+function majBanner(index) {
 	spans[i].classList.remove("dot_selected") // Dessélectionne le dot en cours
-	if (e > 0) {
+	if (index > 0) {
 		i++
 		if (i >= slides.length) {
 			i = 0 // Retour à la première image
@@ -54,9 +53,8 @@ function majBanner(e) {
 }
 
 // Évènements après click sur les flèches :
-right.addEventListener("click", () => {
-	majBanner(1)
-})
-left.addEventListener("click", () => {
-	majBanner(0)
-})
+for (let index = 0; index < 2; index++) {
+	arrows[index].addEventListener("click", () => {
+		majBanner(index) // l'index 0 = gauche et index 1 = droite
+	})
+}
