@@ -55,10 +55,8 @@ function clickFunction(posX) {
 
 // Évènements après click sur les flèches :
 right.addEventListener("click", (event) => {
-	const posX = event.clientX
-	clickFunction(posX)
+	clickFunction(event.clientX)
 })
 left.addEventListener("click", (event) => {
-	const posX = event.clientX
-	clickFunction(posX)
+	clickFunction(0) // ou clickFunction(event.clientX)
 })
