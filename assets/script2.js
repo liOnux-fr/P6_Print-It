@@ -35,7 +35,7 @@ for (let i = 0; i < slides.length; i++) {
 spans[0].classList.add("dot_selected")
 
 // Fonction qui gère les changements après click :
-function clickFunction(e) {
+function majBanner(e) {
 	spans[i].classList.remove("dot_selected") // Dessélectionne le dot en cours
 	if (e > 0) {
 		i++
@@ -55,8 +55,8 @@ function clickFunction(e) {
 
 // Évènements après click sur les flèches :
 right.addEventListener("click", () => {
-	clickFunction(1)
+	majBanner(1)
 })
 left.addEventListener("click", () => {
-	clickFunction(0)
+	majBanner(0)
 })

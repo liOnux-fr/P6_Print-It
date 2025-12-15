@@ -35,7 +35,7 @@ for (let i = 0; i < slides.length; i++) {
 spans[0].classList.add("dot_selected")
 
 // Fonction qui gère les changements après click :
-function clickFunction(i) {
+function majBanner(i) {
 	imgBanner.src = `./assets/images/slideshow/${slides[i].image}` // Change l'image
 	pBanner.innerHTML = slides[i].tagLine // Change le contenu du paragraphe
 	spans[i].classList.add("dot_selected") // Sélectionne le dot prévu
@@ -48,7 +48,7 @@ right.addEventListener("click", () => {
 	if (i >= slides.length) {
 		i = 0 // Retour à la première image
 	}
-	clickFunction(i)
+	majBanner(i)
 })
 left.addEventListener("click", () => {
 	spans[i].classList.remove("dot_selected") // Dessélectionne le dot en cours
@@ -56,5 +56,5 @@ left.addEventListener("click", () => {
 	if (i < 0) {
 		i = slides.length-1 // Retour à la dernière image
 	}
-	clickFunction(i)
+	majBanner(i)
 })
