@@ -25,7 +25,6 @@ const imgBanner = document.querySelector(".banner-img") // image du carrousel
 const parentDot = document.querySelector("#banner div") // conteneur parent des dots
 const spans = [] // Tableau des dots
 let i = 0 // index du tableau slides[]
-let e = 0 // index des évènements
 
 // Création des dots normaux, puis celui sélectionné :
 for (let i = 0; i < slides.length; i++) {
@@ -52,13 +51,12 @@ function clickFunction(e) {
 	imgBanner.src = `./assets/images/slideshow/${slides[i].image}` // Change l'image
 	pBanner.innerHTML = slides[i].tagLine // Change le contenu du paragraphe
 	spans[i].classList.add("dot_selected") // Sélectionne le dot prévu
-	e = 0 // Remise à zéro de l'index évènements
 }
 
 // Évènements après click sur les flèches :
 right.addEventListener("click", () => {
-	clickFunction(e+1)
+	clickFunction(1)
 })
 left.addEventListener("click", () => {
-	clickFunction(e-1)
+	clickFunction(0)
 })
