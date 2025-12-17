@@ -23,13 +23,13 @@ const pBanner = document.querySelector("#banner p") // paragraphe du carrousel
 const imgBanner = document.querySelector(".banner-img") // image du carrousel
 const parentDot = document.querySelector("#banner div") // conteneur parent des dots
 const spans = [] // Tableau des dots
-let i = 0 // index du tableau slides[]
+let i = 0 // currentIndex
 
 // Création des dots normaux, puis celui sélectionné :
-for (let i = 0; i < slides.length; i++) {
+for (let d = 0; d < slides.length; d++) {
     spans.push(document.createElement("span"));
-    spans[i].classList.add("dot");
-    parentDot.appendChild(spans[i]);
+    spans[d].classList.add("dot");
+    parentDot.appendChild(spans[d]);
 }
 spans[0].classList.add("dot_selected")
 
@@ -37,15 +37,9 @@ spans[0].classList.add("dot_selected")
 function majBanner(posX) {
 	spans[i].classList.remove("dot_selected") // Dessélectionne le dot en cours
 	if (posX > 57) {
-		i++
-		if (i >= slides.length) {
-			i = 0 // Retour à la première image
-		}
+		i = (i + 1) % slides.length
 	} else {
-		i--
-		if (i < 0) {
-			i = slides.length-1 // Retour à la dernière image
-		}
+		i = (i - 1 + slides.length) % slides.length
 	}
 	imgBanner.src = `./assets/images/slideshow/${slides[i].image}` // Change l'image
 	pBanner.innerHTML = slides[i].tagLine // Change le contenu du paragraphe
